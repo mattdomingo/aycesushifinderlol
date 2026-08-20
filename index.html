@@ -74,8 +74,12 @@
       li span:last-child { color: #69736d; font-size: .78rem; text-align: right; }
       .footer-bar { display: flex; justify-content: space-between; gap: 18px; align-items: center; margin-top: 24px; padding: 18px 20px; background: var(--ink); color: white; }
       .footer-bar p { margin: 0; font-size: .88rem; }
-      .button { display: inline-block; padding: 11px 17px; background: var(--coral); color: white; text-decoration: none; font-size: .82rem; font-weight: 700; white-space: nowrap; }
+      .actions { display: flex; flex-wrap: wrap; gap: 10px; }
+      .button { display: inline-block; padding: 11px 17px; border: 0; background: var(--coral); color: white; text-decoration: none; font: inherit; font-size: .82rem; font-weight: 700; white-space: nowrap; cursor: pointer; }
       .button:hover { background: var(--coral-dark); }
+      .button--secondary { background: transparent; border: 1px solid rgba(255,255,255,.55); }
+      .button--secondary:hover { background: rgba(255,255,255,.12); }
+      .share-status { min-height: 1.2em; margin: 12px 0 0; color: #5a655f; font-size: .82rem; }
       @media (max-width: 750px) {
         .hero { min-height: 355px; }
         .intro { margin-top: 58px; }
@@ -139,9 +143,42 @@
         </div>
         <div class="footer-bar">
           <p><strong>Lunch:</strong> $24.95 · Mon–Fri, 11:30am–3pm<br><strong>Dinner:</strong> $32.95 · Daily after 3pm</p>
-          <a class="button" href="tel:+15555550188">Reserve a table</a>
+          <div class="actions">
+            <button class="button button--secondary" id="share-app" type="button">Share this app</button>
+            <a class="button" href="tel:+15555550188">Reserve a table</a>
+          </div>
         </div>
+        <p class="share-status" id="share-status" aria-live="polite"></p>
       </section>
     </main>
+    <script>
+      const shareButton = document.getElementById("share-app");
+      const shareStatus = document.getElementById("share-status");
+
+      shareButton.addEventListener("click", async () => {
+        const shareData = {
+          title: document.title,
+          text: "Check out Roll Call Sushi.",
+          url: window.location.href,
+        };
+
+        if (navigator.share) {
+          try {
+            await navigator.share(shareData);
+            shareStatus.textContent = "Thanks for sharing Roll Call Sushi!";
+            return;
+          } catch (error) {
+            if (error.name === "AbortError") return;
+          }
+        }
+
+        try {
+          await navigator.clipboard.writeText(shareData.url);
+          shareStatus.textContent = "Link copied — ready to share.";
+        } catch (error) {
+          shareStatus.textContent = "Copy this link to share: " + shareData.url;
+        }
+      });
+    </script>
   </body>
 </html>
