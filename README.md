@@ -32,3 +32,19 @@ optional non-negative integer `leftover_pieces`.
 ```json
 {"service":"dinner","guests":2,"leftover_pieces":3}
 ```
+
+## Dining timer API
+
+The same server provides an in-memory timer for each table. A timer defaults to
+the restaurant's two-hour dining limit; it is intentionally reset if the server
+restarts. Create one with an optional table label and duration in whole minutes:
+
+```json
+POST /api/timers
+{"table":"Table 8","duration_minutes":120}
+```
+
+Use `GET /api/timers` to list timers, `GET /api/timers/{id}` to retrieve one,
+and `POST /api/timers/{id}/pause`, `/resume`, or `/reset` to manage it. Timer
+responses include `status`, `remaining_seconds`, and `elapsed_seconds`.
+`DELETE /api/timers/{id}` removes a timer when the table is cleared.
