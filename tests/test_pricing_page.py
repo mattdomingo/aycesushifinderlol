@@ -43,63 +43,40 @@ class SushiPricingPageTests(unittest.TestCase):
         cls.page = MenuPageParser()
         cls.page.feed(cls.html)
 
-    def test_page_has_a_descriptive_title_and_menu_description(self) -> None:
-        self.assertIn("<title>Roll Call Sushi | All You Can Eat</title>", self.html)
+    def test_page_has_a_descriptive_title_and_pricing_description(self) -> None:
+        self.assertIn("<title>Roll Call Sushi | Price Your Visit</title>", self.html)
         self.assertIn(
-            {"name": "description", "content": "An all-you-can-eat sushi menu."},
+            {
+                "name": "description",
+                "content": "Calculate the price of your all-you-can-eat sushi visit.",
+            },
             self.page.meta,
         )
 
-    def test_primary_dinner_price_is_displayed_per_guest(self) -> None:
-        self.assertIn("$32.95 per guest", self.page.rendered_text)
-
-    def test_lunch_and_dinner_prices_and_availability_are_clear(self) -> None:
+    def test_pricing_choices_are_displayed(self) -> None:
         page_text = self.page.rendered_text
-        self.assertIn("Lunch: $24.95 · Mon–Fri, 11:30am–3pm", page_text)
-        self.assertIn("Dinner: $32.95 · Daily after 3pm", page_text)
+        self.assertIn("Weekday lunch Mon–Fri · before 3pm", page_text)
+        self.assertIn("Dinner Daily · after 3pm", page_text)
+        self.assertIn("Weekend Sat–Sun · all day", page_text)
 
     def test_dining_rules_disclose_time_limit_and_leftover_fee(self) -> None:
         page_text = self.page.rendered_text
-        self.assertIn("Two-hour dining limit.", page_text)
-        self.assertIn("$1 charge may apply for each leftover piece.", page_text)
+        self.assertIn("A two-hour dining limit applies.", page_text)
+        self.assertIn("$1 charge applies to each leftover piece.", page_text)
 
-    def test_all_menu_categories_and_items_are_present(self) -> None:
-        page_text = self.page.rendered_text
-        for category in ("Start here", "Classic rolls", "Nigiri & sashimi"):
-            self.assertIn(category, page_text)
-        for item in (
-            "Edamame",
-            "Miso soup",
-            "Gyoza",
-            "Seaweed salad",
-            "Spicy tuna",
-            "California",
-            "Salmon avocado",
-            "Crunchy shrimp",
-            "Salmon",
-            "Tuna",
-            "Yellowtail",
-            "Sweet shrimp",
-        ):
-            self.assertIn(item, page_text)
+    def test_share_control_has_an_accessible_status_message(self) -> None:
+        self.assertIn('id="share-app"', self.html)
+        self.assertIn('aria-describedby="share-status"', self.html)
+        self.assertIn('id="share-status" role="status"', self.html)
 
-    def test_portion_sizes_are_disclosed_for_rolls_and_nigiri(self) -> None:
-        self.assertIn("Six pieces each", self.page.rendered_text)
-        self.assertIn("Two pieces each", self.page.rendered_text)
+    def test_sharing_uses_the_native_share_sheet_and_copy_fallback(self) -> None:
+        self.assertIn("navigator.share", self.html)
+        self.assertIn("navigator.clipboard?.writeText", self.html)
+        self.assertIn("url:window.location.href", self.html)
 
-    def test_menu_section_is_labeled_for_assistive_technology(self) -> None:
-        self.assertIn('<section class="menu-card" aria-labelledby="menu-heading">', self.html)
-        self.assertIn('<h2 id="menu-heading">All-you-can-eat menu</h2>', self.html)
-
-    def test_reservation_action_uses_a_clickable_phone_link(self) -> None:
-        self.assertIn(
-            {"class": "button", "href": "tel:+15555550188"}, self.page.links
-        )
-
-    def test_mobile_breakpoints_keep_menu_usable_on_narrow_screens(self) -> None:
-        self.assertIn("@media (max-width: 750px)", self.html)
-        self.assertIn(".menu-grid { grid-template-columns: 1fr; }", self.html)
-        self.assertIn("@media (max-width: 430px)", self.html)
+    def test_mobile_breakpoint_keeps_pricing_tool_usable_on_narrow_screens(self) -> None:
+        self.assertIn("@media (max-width:720px)", self.html)
+        self.assertIn("@media (max-width:430px)", self.html)
 
 
 if __name__ == "__main__":
