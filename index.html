@@ -3,145 +3,45 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="An all-you-can-eat sushi menu." />
-    <title>Roll Call Sushi | All You Can Eat</title>
+    <meta name="description" content="Calculate the price of your all-you-can-eat sushi visit." />
+    <title>Roll Call Sushi | Price Your Visit</title>
     <style>
-      :root {
-        --ink: #1d2521;
-        --paper: #fffaf0;
-        --cream: #f3ead9;
-        --coral: #e75a48;
-        --coral-dark: #bf4134;
-        --seaweed: #355b50;
-        --gold: #f2bd52;
-      }
-
-      * { box-sizing: border-box; }
-      body {
-        margin: 0;
-        color: var(--ink);
-        background: var(--paper);
-        font-family: Arial, Helvetica, sans-serif;
-      }
-
-      .hero {
-        min-height: 390px;
-        padding: 28px max(6vw, 24px) 52px;
-        color: white;
-        background:
-          radial-gradient(circle at 82% 20%, rgba(242, 189, 82, .95) 0 58px, transparent 59px),
-          radial-gradient(circle at 77% 18%, #ef7969 0 108px, transparent 109px),
-          linear-gradient(120deg, #294b43, #18342e);
-        position: relative;
-        overflow: hidden;
-      }
-      .hero::after {
-        content: "寿司";
-        position: absolute;
-        right: 6vw;
-        bottom: -45px;
-        color: rgba(255,255,255,.09);
-        font-size: clamp(9rem, 25vw, 19rem);
-        font-weight: 700;
-        line-height: 1;
-      }
-      nav, .intro, main { max-width: 1120px; margin: auto; position: relative; z-index: 1; }
-      nav { display: flex; align-items: center; justify-content: space-between; }
-      .brand { font-size: 1.05rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
-      .brand span { color: var(--gold); }
-      .service { padding: 9px 14px; border: 1px solid rgba(255,255,255,.4); border-radius: 99px; font-size: .8rem; }
-      .intro { margin-top: 72px; max-width: 1120px; }
-      .eyebrow { margin: 0 0 12px; color: var(--gold); font-weight: 700; font-size: .78rem; letter-spacing: .14em; text-transform: uppercase; }
-      h1 { max-width: 660px; margin: 0; font-family: Georgia, serif; font-size: clamp(3rem, 8vw, 6.2rem); line-height: .91; letter-spacing: -.055em; }
-      .intro p { max-width: 480px; margin: 20px 0 0; color: #dce8e3; font-size: 1.05rem; line-height: 1.55; }
-
-      main { padding: 0 max(6vw, 24px) 72px; }
-      .menu-card { margin-top: -30px; padding: 28px; background: white; box-shadow: 0 16px 38px rgba(19, 48, 40, .14); border-radius: 4px; }
-      .menu-top { display: flex; gap: 24px; align-items: center; justify-content: space-between; padding-bottom: 22px; border-bottom: 1px solid #e9e1d5; }
-      h2 { margin: 0; font-family: Georgia, serif; font-size: 2rem; letter-spacing: -.03em; }
-      .price { color: var(--coral); font-size: 1.35rem; font-weight: 800; white-space: nowrap; }
-      .price small { color: #69736d; font-size: .75rem; font-weight: 500; }
-      .note { margin: 16px 0 0; color: #5a655f; font-size: .92rem; line-height: 1.5; }
-      .menu-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 28px; }
-      .section { padding: 18px; background: var(--cream); border-top: 4px solid var(--seaweed); }
-      .section:nth-child(2) { border-color: var(--coral); }
-      .section:nth-child(3) { border-color: var(--gold); }
-      h3 { margin: 0 0 4px; font-size: 1rem; letter-spacing: .08em; text-transform: uppercase; }
-      .section > p { margin: 0 0 14px; color: #69736d; font-size: .8rem; }
-      ul { margin: 0; padding: 0; list-style: none; }
-      li { display: flex; justify-content: space-between; gap: 8px; padding: 9px 0; border-top: 1px solid rgba(53,91,80,.16); font-size: .93rem; }
-      li:first-child { border-top: 0; }
-      li span:last-child { color: #69736d; font-size: .78rem; text-align: right; }
-      .footer-bar { display: flex; justify-content: space-between; gap: 18px; align-items: center; margin-top: 24px; padding: 18px 20px; background: var(--ink); color: white; }
-      .footer-bar p { margin: 0; font-size: .88rem; }
-      .button { display: inline-block; padding: 11px 17px; background: var(--coral); color: white; text-decoration: none; font-size: .82rem; font-weight: 700; white-space: nowrap; }
-      .button:hover { background: var(--coral-dark); }
-      @media (max-width: 750px) {
-        .hero { min-height: 355px; }
-        .intro { margin-top: 58px; }
-        .menu-card { padding: 20px; }
-        .menu-grid { grid-template-columns: 1fr; }
-        .footer-bar { align-items: flex-start; flex-direction: column; }
-      }
-      @media (max-width: 430px) { .menu-top { align-items: flex-start; flex-direction: column; gap: 8px; } }
+      :root { --ink:#18342e; --paper:#fffaf0; --cream:#f3ead9; --coral:#e75a48; --sea:#426b5f; --gold:#f2bd52; --muted:#68736d; }
+      * { box-sizing:border-box; } body { margin:0; min-height:100vh; color:var(--ink); background:var(--paper); font-family:Arial,Helvetica,sans-serif; }
+      .hero { padding:26px max(6vw,24px) 118px; color:#fff; background:radial-gradient(circle at 84% 12%,rgba(242,189,82,.98) 0 48px,transparent 49px),radial-gradient(circle at 78% 18%,#eb7869 0 96px,transparent 97px),linear-gradient(120deg,#294d44,#14312b); overflow:hidden; position:relative; }
+      .hero::after { content:"寿司"; position:absolute; right:5vw; bottom:-60px; color:rgba(255,255,255,.08); font-size:clamp(9rem,25vw,19rem); font-weight:700; line-height:1; }
+      nav,.hero-copy,.calculator { max-width:1100px; margin:auto; position:relative; z-index:1; } nav { display:flex; justify-content:space-between; align-items:center; }
+      .brand { font-size:1.04rem; font-weight:800; letter-spacing:.08em; text-transform:uppercase; } .brand span,.eyebrow { color:var(--gold); } .badge { padding:8px 12px; border:1px solid rgba(255,255,255,.42); border-radius:30px; font-size:.78rem; }
+      .hero-copy { margin-top:62px; } .eyebrow { margin:0 0 11px; font-size:.76rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; } h1 { max-width:650px; margin:0; font:clamp(3rem,7.5vw,5.8rem)/.93 Georgia,serif; letter-spacing:-.055em; } .hero-copy > p:last-child { max-width:465px; margin:18px 0 0; color:#d8e6e1; font-size:1.04rem; line-height:1.55; }
+      main { padding:0 max(6vw,24px) 70px; } .calculator { display:grid; grid-template-columns:1.12fr .88fr; margin-top:-66px; background:#fff; box-shadow:0 18px 45px rgba(17,47,40,.16); } .controls,.summary { padding:32px; }
+      h2 { margin:0; font:2.1rem Georgia,serif; letter-spacing:-.035em; } .subhead { margin:9px 0 27px; color:var(--muted); font-size:.93rem; line-height:1.5; } .field-label { display:block; margin:0 0 10px; font-size:.8rem; font-weight:800; letter-spacing:.08em; text-transform:uppercase; }
+      .choices { display:grid; grid-template-columns:repeat(3,1fr); gap:9px; margin-bottom:25px; } .choice { cursor:pointer; } .choice input { position:absolute; opacity:0; pointer-events:none; } .choice span { display:block; min-height:76px; padding:12px; border:1px solid #ded7ca; color:var(--muted); font-size:.82rem; line-height:1.35; } .choice strong { display:block; color:var(--ink); font-size:.94rem; } .choice input:checked + span { border:2px solid var(--coral); padding:11px; background:#fff8f6; }
+      .number-row { display:grid; grid-template-columns:1fr 1fr; gap:18px; } label:not(.choice) { display:block; color:var(--muted); font-size:.84rem; } input[type="number"] { width:100%; margin-top:8px; padding:12px; border:1px solid #d9d4ca; color:var(--ink); font:700 1.1rem Arial,sans-serif; }
+      .extras { margin-top:27px; padding-top:23px; border-top:1px solid #ece5da; } .check { display:flex; align-items:flex-start; gap:10px; margin:12px 0; color:#4f5d57; font-size:.9rem; line-height:1.35; cursor:pointer; } .check input { accent-color:var(--coral); width:16px; height:16px; margin:0; flex:0 0 auto; }
+      .tip { display:flex; gap:7px; margin-top:13px; } .tip button { flex:1; padding:9px 5px; border:1px solid #d9d4ca; background:#fff; color:var(--ink); font-weight:700; cursor:pointer; } .tip button.active { border-color:var(--sea); background:var(--sea); color:#fff; }
+      .summary { color:#fff; background:var(--ink); } .summary .eyebrow { margin-bottom:10px; } .total { margin:0; font:clamp(3rem,6vw,4.7rem)/.94 Georgia,serif; letter-spacing:-.06em; } .per-person { margin:8px 0 27px; color:#c7d8d1; font-size:.91rem; } .lines { border-top:1px solid rgba(255,255,255,.18); } .line { display:flex; justify-content:space-between; gap:14px; padding:13px 0; border-bottom:1px solid rgba(255,255,255,.18); color:#d8e5df; font-size:.9rem; } .line strong { color:#fff; white-space:nowrap; } .notice { margin-top:23px; padding:13px; background:rgba(255,255,255,.1); color:#d8e5df; font-size:.8rem; line-height:1.45; }
+      .menu-note { max-width:1100px; margin:29px auto 0; padding:0 3px; color:#5e6963; font-size:.87rem; line-height:1.5; } .menu-note strong { color:var(--ink); }
+      @media (max-width:720px) { .hero { padding-bottom:96px; } .hero-copy { margin-top:48px; } .calculator { grid-template-columns:1fr; margin-top:-42px; } .controls,.summary { padding:25px; } } @media (max-width:430px) { .badge { display:none; } .choices,.number-row { grid-template-columns:1fr; } .choice span { min-height:0; } .number-row { gap:15px; } h1 { font-size:3rem; } }
     </style>
   </head>
   <body>
-    <header class="hero">
-      <nav aria-label="Main navigation">
-        <div class="brand">Roll <span>Call</span> Sushi</div>
-        <div class="service">Dine in · Takeout</div>
-      </nav>
-      <div class="intro">
-        <p class="eyebrow">Every roll, every round</p>
-        <h1>All the sushi you can happily eat.</h1>
-        <p>Made to order, shared around the table, and served with plenty of ginger on the side.</p>
-      </div>
-    </header>
-    <main>
-      <section class="menu-card" aria-labelledby="menu-heading">
-        <div class="menu-top">
-          <h2 id="menu-heading">All-you-can-eat menu</h2>
-          <div class="price">$32.95 <small>per guest</small></div>
-        </div>
-        <p class="note">Two-hour dining limit. Please order mindfully — a $1 charge may apply for each leftover piece.</p>
-        <div class="menu-grid">
-          <section class="section">
-            <h3>Start here</h3>
-            <p>Small plates & soup</p>
-            <ul>
-              <li><span>Edamame</span><span>sea salt</span></li>
-              <li><span>Miso soup</span><span>tofu · wakame</span></li>
-              <li><span>Gyoza</span><span>pan-seared pork</span></li>
-              <li><span>Seaweed salad</span><span>sesame</span></li>
-            </ul>
-          </section>
-          <section class="section">
-            <h3>Classic rolls</h3>
-            <p>Six pieces each</p>
-            <ul>
-              <li><span>Spicy tuna</span><span>cucumber · chili</span></li>
-              <li><span>California</span><span>crab · avocado</span></li>
-              <li><span>Salmon avocado</span><span>sesame</span></li>
-              <li><span>Crunchy shrimp</span><span>tempura · eel sauce</span></li>
-            </ul>
-          </section>
-          <section class="section">
-            <h3>Nigiri & sashimi</h3>
-            <p>Two pieces each</p>
-            <ul>
-              <li><span>Salmon</span><span>sake</span></li>
-              <li><span>Tuna</span><span>maguro</span></li>
-              <li><span>Yellowtail</span><span>hamachi</span></li>
-              <li><span>Sweet shrimp</span><span>amaebi</span></li>
-            </ul>
-          </section>
-        </div>
-        <div class="footer-bar">
-          <p><strong>Lunch:</strong> $24.95 · Mon–Fri, 11:30am–3pm<br><strong>Dinner:</strong> $32.95 · Daily after 3pm</p>
-          <a class="button" href="tel:+15555550188">Reserve a table</a>
-        </div>
-      </section>
-    </main>
+    <header class="hero"><nav aria-label="Main navigation"><div class="brand">Roll <span>Call</span> Sushi</div><div class="badge">Dine in · Takeout</div></nav><div class="hero-copy"><p class="eyebrow">Plan your next round</p><h1>Price your sushi visit.</h1><p>Choose when you’re coming, add your party, and get a clear estimate before you sit down.</p></div></header>
+    <main><section class="calculator" aria-labelledby="calculator-heading">
+      <form class="controls" id="price-form"><h2 id="calculator-heading">Build your estimate</h2><p class="subhead">All-you-can-eat pricing, made simple. Tax and tip are included in the total below.</p>
+        <span class="field-label">When are you dining?</span><div class="choices">
+          <label class="choice"><input type="radio" name="meal" value="24.95" checked><span><strong>Weekday lunch</strong>Mon–Fri · before 3pm</span></label>
+          <label class="choice"><input type="radio" name="meal" value="32.95"><span><strong>Dinner</strong>Daily · after 3pm</span></label>
+          <label class="choice"><input type="radio" name="meal" value="34.95"><span><strong>Weekend</strong>Sat–Sun · all day</span></label>
+        </div><div class="number-row"><label>Guests<input id="guests" type="number" min="1" max="50" value="2" inputmode="numeric"></label><label>Leftover pieces<input id="leftovers" type="number" min="0" max="100" value="0" inputmode="numeric"></label></div>
+        <div class="extras"><span class="field-label">Finish the estimate</span><label class="check"><input id="include-tax" type="checkbox" checked>Include estimated sales tax (8.25%)</label><label class="check"><input id="include-tip" type="checkbox" checked>Include gratuity</label><div class="tip" id="tip-options" aria-label="Gratuity percentage"><button type="button" data-tip="15">15%</button><button type="button" class="active" data-tip="18">18%</button><button type="button" data-tip="20">20%</button></div></div>
+      </form>
+      <aside class="summary" aria-live="polite"><p class="eyebrow">Your estimated total</p><p class="total" id="total">$0.00</p><p class="per-person" id="per-person">$0.00 per guest</p><div class="lines"><div class="line"><span id="meal-label">Weekday lunch × 2</span><strong id="meal-cost">$0.00</strong></div><div class="line"><span>Leftover charge <small>($1/piece)</small></span><strong id="leftover-cost">$0.00</strong></div><div class="line"><span>Estimated tax</span><strong id="tax-cost">$0.00</strong></div><div class="line"><span id="tip-label">18% gratuity</span><strong id="tip-cost">$0.00</strong></div></div><p class="notice">This is an estimate. Drinks, specialty items, and any restaurant-specific fees are not included.</p></aside>
+    </section><p class="menu-note"><strong>Good to know:</strong> A two-hour dining limit applies. Please order mindfully — a $1 charge applies to each leftover piece.</p></main>
+    <script>
+      const form=document.querySelector('#price-form'), guests=document.querySelector('#guests'), leftovers=document.querySelector('#leftovers'), taxBox=document.querySelector('#include-tax'), tipBox=document.querySelector('#include-tip'), money=new Intl.NumberFormat('en-US',{style:'currency',currency:'USD'}); let tipRate=18;
+      const clamp=(input,minimum)=>Math.max(minimum,Number(input.value)||minimum);
+      function update(){const selected=form.querySelector('input[name="meal"]:checked'),count=clamp(guests,1),pieces=clamp(leftovers,0),meal=Number(selected.value)*count,leftoverFee=pieces,subtotal=meal+leftoverFee,tax=taxBox.checked?subtotal*.0825:0,tip=tipBox.checked?subtotal*(tipRate/100):0,total=subtotal+tax+tip; document.querySelector('#total').textContent=money.format(total); document.querySelector('#per-person').textContent=`${money.format(total/count)} per guest`; document.querySelector('#meal-label').textContent=`${selected.parentElement.querySelector('strong').textContent} × ${count}`; document.querySelector('#meal-cost').textContent=money.format(meal); document.querySelector('#leftover-cost').textContent=money.format(leftoverFee); document.querySelector('#tax-cost').textContent=money.format(tax); document.querySelector('#tip-label').textContent=tipBox.checked?`${tipRate}% gratuity`:'Gratuity'; document.querySelector('#tip-cost').textContent=money.format(tip); }
+      form.addEventListener('input',update); form.addEventListener('change',update); document.querySelectorAll('[data-tip]').forEach(button=>button.addEventListener('click',()=>{tipRate=Number(button.dataset.tip);document.querySelectorAll('[data-tip]').forEach(item=>item.classList.toggle('active',item===button));update();})); update();
+    </script>
   </body>
 </html>
