@@ -1,18 +1,13 @@
-# Sushi Finder Lol
+# Sora Sushi
 
-Yum — a simple place to explore sushi.
+A static landing page for a sushi restaurant.
 
-## A brief history of sushi
+## Run locally
 
-Sushi began in Southeast Asia as a method of preserving fish: fish was packed
-with fermented rice, and the rice was originally discarded before eating. The
-practice traveled to Japan, where it developed into *narezushi*.
+From the repository root, start the local server:
 
-Over time, Japanese cooks shortened the fermentation process and began serving
-the rice alongside the fish. During the Edo period (1603–1868), Edo-style
-*nigiri sushi* emerged in what is now Tokyo as a quick, hand-formed meal. It
-eventually became the style most people recognize today.
+```bash
+node server.js
+```
 
-Modern sushi includes far more than raw fish. Nigiri, maki rolls, chirashi, and
-vegetable-based options all reflect regional traditions and new interpretations
-of this long-evolving cuisine.
+Then open [http://localhost:8000](http://localhost:8000) in a browser.
