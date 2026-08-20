@@ -22,6 +22,18 @@ class SushiScriptTests(unittest.TestCase):
         self.assertEqual(result.stdout, "i love sushi\n")
         self.assertEqual(result.stderr, "")
 
+    def test_rejects_unknown_command_with_usage(self) -> None:
+        result = subprocess.run(
+            [sys.executable, "sushi.py", "unknown"],
+            cwd=REPOSITORY_ROOT,
+            capture_output=True,
+            text=True,
+        )
+
+        self.assertEqual(result.returncode, 2)
+        self.assertEqual(result.stdout, "")
+        self.assertEqual(result.stderr, "Usage: python sushi.py [serve]\n")
+
 
 if __name__ == "__main__":
     unittest.main()
