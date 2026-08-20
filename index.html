@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="An all-you-can-eat sushi menu." />
+    <title>Roll Call Sushi | All You Can Eat</title>
+    <style>
+      :root {
+        --ink: #1d2521;
+        --paper: #fffaf0;
+        --cream: #f3ead9;
+        --coral: #e75a48;
+        --coral-dark: #bf4134;
+        --seaweed: #355b50;
+        --gold: #f2bd52;
+      }
+
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        color: var(--ink);
+        background: var(--paper);
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      .hero {
+        min-height: 390px;
+        padding: 28px max(6vw, 24px) 52px;
+        color: white;
+        background:
+          radial-gradient(circle at 82% 20%, rgba(242, 189, 82, .95) 0 58px, transparent 59px),
+          radial-gradient(circle at 77% 18%, #ef7969 0 108px, transparent 109px),
+          linear-gradient(120deg, #294b43, #18342e);
+        position: relative;
+        overflow: hidden;
+      }
+      .hero::after {
+        content: "寿司";
+        position: absolute;
+        right: 6vw;
+        bottom: -45px;
+        color: rgba(255,255,255,.09);
+        font-size: clamp(9rem, 25vw, 19rem);
+        font-weight: 700;
+        line-height: 1;
+      }
+      nav, .intro, main { max-width: 1120px; margin: auto; position: relative; z-index: 1; }
+      nav { display: flex; align-items: center; justify-content: space-between; }
+      .brand { font-size: 1.05rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+      .brand span { color: var(--gold); }
+      .service { padding: 9px 14px; border: 1px solid rgba(255,255,255,.4); border-radius: 99px; font-size: .8rem; }
+      .intro { margin-top: 72px; max-width: 1120px; }
+      .eyebrow { margin: 0 0 12px; color: var(--gold); font-weight: 700; font-size: .78rem; letter-spacing: .14em; text-transform: uppercase; }
+      h1 { max-width: 660px; margin: 0; font-family: Georgia, serif; font-size: clamp(3rem, 8vw, 6.2rem); line-height: .91; letter-spacing: -.055em; }
+      .intro p { max-width: 480px; margin: 20px 0 0; color: #dce8e3; font-size: 1.05rem; line-height: 1.55; }
+
+      main { padding: 0 max(6vw, 24px) 72px; }
+      .menu-card { margin-top: -30px; padding: 28px; background: white; box-shadow: 0 16px 38px rgba(19, 48, 40, .14); border-radius: 4px; }
+      .menu-top { display: flex; gap: 24px; align-items: center; justify-content: space-between; padding-bottom: 22px; border-bottom: 1px solid #e9e1d5; }
+      h2 { margin: 0; font-family: Georgia, serif; font-size: 2rem; letter-spacing: -.03em; }
+      .price { color: var(--coral); font-size: 1.35rem; font-weight: 800; white-space: nowrap; }
+      .price small { color: #69736d; font-size: .75rem; font-weight: 500; }
+      .note { margin: 16px 0 0; color: #5a655f; font-size: .92rem; line-height: 1.5; }
+      .menu-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 28px; }
+      .section { padding: 18px; background: var(--cream); border-top: 4px solid var(--seaweed); }
+      .section:nth-child(2) { border-color: var(--coral); }
+      .section:nth-child(3) { border-color: var(--gold); }
+      h3 { margin: 0 0 4px; font-size: 1rem; letter-spacing: .08em; text-transform: uppercase; }
+      .section > p { margin: 0 0 14px; color: #69736d; font-size: .8rem; }
+      ul { margin: 0; padding: 0; list-style: none; }
+      li { display: flex; justify-content: space-between; gap: 8px; padding: 9px 0; border-top: 1px solid rgba(53,91,80,.16); font-size: .93rem; }
+      li:first-child { border-top: 0; }
+      li span:last-child { color: #69736d; font-size: .78rem; text-align: right; }
+      .footer-bar { display: flex; justify-content: space-between; gap: 18px; align-items: center; margin-top: 24px; padding: 18px 20px; background: var(--ink); color: white; }
+      .footer-bar p { margin: 0; font-size: .88rem; }
+      .button { display: inline-block; padding: 11px 17px; background: var(--coral); color: white; text-decoration: none; font-size: .82rem; font-weight: 700; white-space: nowrap; }
+      .button:hover { background: var(--coral-dark); }
+      @media (max-width: 750px) {
+        .hero { min-height: 355px; }
+        .intro { margin-top: 58px; }
+        .menu-card { padding: 20px; }
+        .menu-grid { grid-template-columns: 1fr; }
+        .footer-bar { align-items: flex-start; flex-direction: column; }
+      }
+      @media (max-width: 430px) { .menu-top { align-items: flex-start; flex-direction: column; gap: 8px; } }
+    </style>
+  </head>
+  <body>
+    <header class="hero">
+      <nav aria-label="Main navigation">
+        <div class="brand">Roll <span>Call</span> Sushi</div>
+        <div class="service">Dine in · Takeout</div>
+      </nav>
+      <div class="intro">
+        <p class="eyebrow">Every roll, every round</p>
+        <h1>All the sushi you can happily eat.</h1>
+        <p>Made to order, shared around the table, and served with plenty of ginger on the side.</p>
+      </div>
+    </header>
+    <main>
+      <section class="menu-card" aria-labelledby="menu-heading">
+        <div class="menu-top">
+          <h2 id="menu-heading">All-you-can-eat menu</h2>
+          <div class="price">$32.95 <small>per guest</small></div>
+        </div>
+        <p class="note">Two-hour dining limit. Please order mindfully — a $1 charge may apply for each leftover piece.</p>
+        <div class="menu-grid">
+          <section class="section">
+            <h3>Start here</h3>
+            <p>Small plates & soup</p>
+            <ul>
+              <li><span>Edamame</span><span>sea salt</span></li>
+              <li><span>Miso soup</span><span>tofu · wakame</span></li>
+              <li><span>Gyoza</span><span>pan-seared pork</span></li>
+              <li><span>Seaweed salad</span><span>sesame</span></li>
+            </ul>
+          </section>
+          <section class="section">
+            <h3>Classic rolls</h3>
+            <p>Six pieces each</p>
+            <ul>
+              <li><span>Spicy tuna</span><span>cucumber · chili</span></li>
+              <li><span>California</span><span>crab · avocado</span></li>
+              <li><span>Salmon avocado</span><span>sesame</span></li>
+              <li><span>Crunchy shrimp</span><span>tempura · eel sauce</span></li>
+            </ul>
+          </section>
+          <section class="section">
+            <h3>Nigiri & sashimi</h3>
+            <p>Two pieces each</p>
+            <ul>
+              <li><span>Salmon</span><span>sake</span></li>
+              <li><span>Tuna</span><span>maguro</span></li>
+              <li><span>Yellowtail</span><span>hamachi</span></li>
+              <li><span>Sweet shrimp</span><span>amaebi</span></li>
+            </ul>
+          </section>
+        </div>
+        <div class="footer-bar">
+          <p><strong>Lunch:</strong> $24.95 · Mon–Fri, 11:30am–3pm<br><strong>Dinner:</strong> $32.95 · Daily after 3pm</p>
+          <a class="button" href="tel:+15555550188">Reserve a table</a>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
