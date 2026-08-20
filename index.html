@@ -62,6 +62,8 @@
       .price { color: var(--coral); font-size: 1.35rem; font-weight: 800; white-space: nowrap; }
       .price small { color: #69736d; font-size: .75rem; font-weight: 500; }
       .note { margin: 16px 0 0; color: #5a655f; font-size: .92rem; line-height: 1.5; }
+      .dietary-note { margin: 10px 0 0; color: #5a655f; font-size: .82rem; line-height: 1.5; }
+      .dietary-key { display: inline-block; margin-right: 5px; padding: 2px 6px; border-radius: 99px; background: #dce8e3; color: var(--seaweed); font-size: .68rem; font-weight: 800; letter-spacing: .05em; }
       .menu-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 28px; }
       .section { padding: 18px; background: var(--cream); border-top: 4px solid var(--seaweed); }
       .section:nth-child(2) { border-color: var(--coral); }
@@ -71,7 +73,7 @@
       ul { margin: 0; padding: 0; list-style: none; }
       li { display: flex; justify-content: space-between; gap: 8px; padding: 9px 0; border-top: 1px solid rgba(53,91,80,.16); font-size: .93rem; }
       li:first-child { border-top: 0; }
-      li span:last-child { color: #69736d; font-size: .78rem; text-align: right; }
+      li > span:last-child { color: #69736d; font-size: .78rem; text-align: right; }
       .footer-bar { display: flex; justify-content: space-between; gap: 18px; align-items: center; margin-top: 24px; padding: 18px 20px; background: var(--ink); color: white; }
       .footer-bar p { margin: 0; font-size: .88rem; }
       .button { display: inline-block; padding: 11px 17px; background: var(--coral); color: white; text-decoration: none; font-size: .82rem; font-weight: 700; white-space: nowrap; }
@@ -105,15 +107,16 @@
           <div class="price">$32.95 <small>per guest</small></div>
         </div>
         <p class="note">Two-hour dining limit. Please order mindfully — a $1 charge may apply for each leftover piece.</p>
+        <p class="dietary-note"><span class="dietary-key">V</span> Vegetarian-friendly options are available. Please tell us about allergies before ordering.</p>
         <div class="menu-grid">
           <section class="section">
             <h3>Start here</h3>
             <p>Small plates & soup</p>
             <ul>
-              <li><span>Edamame</span><span>sea salt</span></li>
+              <li><span>Edamame <span class="dietary-key">V</span></span><span>sea salt</span></li>
               <li><span>Miso soup</span><span>tofu · wakame</span></li>
               <li><span>Gyoza</span><span>pan-seared pork</span></li>
-              <li><span>Seaweed salad</span><span>sesame</span></li>
+              <li><span>Seaweed salad <span class="dietary-key">V</span></span><span>sesame</span></li>
             </ul>
           </section>
           <section class="section">
