@@ -1,1 +1,48 @@
-text
+Sushi Finder Lol — Development Log
+==================================
+
+Git history inspected: 2026-08-28
+
+The repository currently has one Git commit:
+
+* 7bb6e94 — openfloor candidate baseline
+  This commit established the project and introduced all files currently
+  tracked below.
+
+Features and project changes recorded in that baseline
+------------------------------------------------------
+
+* Restaurant site: Added the Roll Call Sushi responsive single-page site in
+  index.html, with menu highlights, all-you-can-eat pricing, contact details,
+  a reservation phone link, and a share action.
+* Accessibility and responsive design: Added semantic page sections,
+  navigation labels, an accessible decorative-food description, status text
+  for sharing, and mobile layout rules.
+* Bonnie queue pages: Added the Bonnie service section to the main site and
+  the standalone bonnie.html queue page.
+* Pricing service: Added sushi.py, a standard-library HTTP backend supporting
+  health checks, menu data, and lunch/dinner price quotes.
+* Table timers: Added in-memory table dining timers with create, list, read,
+  pause, resume, reset, and delete operations.
+* Documentation: Added README.md with sushi background and API usage, plus
+  ARCHITECTURE.md with the proposed website structure and deployment guidance.
+* Automated checks: Added tests for sushi behavior, pricing backend behavior,
+  and pricing-page behavior under tests/.
+* Supporting content: Added the repository's remaining text, markdown, and
+  shell support files, including model/agent notes and restaurant content.
+
+Tracked files introduced by the baseline
+----------------------------------------
+
+ARCHITECTURE.md, MILF.txt, README.md, alert.md, bonnie.html, claude.txt,
+claude_3_5_haiku.txt, claude_agent.txt, claude_model.txt, fish.sh, fish.txt,
+haiku_frontend.txt, index.html, rice.txt, ryan.txt, ryan_big_dih_wang.txt,
+sushi.py, sushi.txt, tests/test_pricing_backend.py, tests/test_pricing_page.py,
+tests/test_sushi.py, text.txt, welcome.md, and xyz.md.
+
+Maintenance note
+----------------
+
+Update this log when a Git commit changes a feature, test, document, or
+operational file. Record the commit identifier, a short summary, and the
+affected files so the history remains easy to follow.
