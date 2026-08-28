@@ -1,2 +1,29 @@
-chocolate
-vagine
+Sushi Finder Lol — Development Log
+==================================
+
+Git history inspected: 2026-08-28
+
+* 7bb6e94 — openfloor candidate baseline
+  Established the project and introduced the restaurant site, the standalone
+  Bonnie queue page, the sushi pricing and table-timer service, project
+  documentation, automated tests, and supporting content.
+
+* e1df550 — openfloor latest candidate
+  Updated text.txt with the entries "chocolate" and "vagine", and added
+  CLAUDE.md as a symlink to AGENTS.md.
+
+Baseline files
+--------------
+
+ARCHITECTURE.md, MILF.txt, README.md, alert.md, bonnie.html, claude.txt,
+claude_3_5_haiku.txt, claude_agent.txt, claude_model.txt, fish.sh, fish.txt,
+haiku_frontend.txt, index.html, rice.txt, ryan.txt, ryan_big_dih_wang.txt,
+sushi.py, sushi.txt, tests/test_pricing_backend.py, tests/test_pricing_page.py,
+tests/test_sushi.py, text.txt, welcome.md, and xyz.md.
+
+Maintenance note
+----------------
+
+Update this log when a Git commit changes a feature, test, document, or
+operational file. Record the commit identifier, a short summary, and the
+affected files so the history remains easy to follow.
